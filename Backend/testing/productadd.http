@@ -1,0 +1,84 @@
+           //add products eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDc2NDYwMjUzMmM4ODAzOWFjN2Q2MSIsImlhdCI6MTc2NjQ1NDE0MSwiZXhwIjoxNzY3MzE4MTQxfQ.-7XqVzex14t8xBMltCg3gl6HSUE3is6GRjb866CLrCQ
+# POST http://localhost:8000/api/v1/product/add
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDc2NDYwMjUzMmM4ODAzOWFjN2Q2MSIsImlhdCI6MTc2NjQ1NDE0MSwiZXhwIjoxNzY3MzE4MTQxfQ.-7XqVzex14t8xBMltCg3gl6HSUE3is6GRjb866CLrCQ
+# Content-Type: multipart/form-data; boundary=boundary
+
+# --boundary
+# Content-Disposition: form-data; name="productName"
+
+# iPhone 15
+# --boundary
+# Content-Disposition: form-data; name="productDesc"
+
+# iPhone 15 with sleek design and fast processor.
+# --boundary
+# Content-Disposition: form-data; name="productPrice"
+
+# 99999
+# --boundary
+# Content-Disposition: form-data; name="category"
+
+# Mobile
+# --boundary
+# Content-Disposition: form-data; name="brand"
+
+# Apple
+# --boundary
+# Content-Disposition: form-data; name="productimg"; filename="iphone15.jpg"
+# Content-Type: image/jpeg
+
+# < ./iphone15.jpg
+# --boundary--
+
+
+
+
+                 //get all posts
+# GET http://localhost:8000/api/v1/product/getallproducts
+
+
+
+# Update product
+ 
+PUT http://localhost:8000/api/v1/product/update/6949e87f0af94ffbc1b83d47
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDc2NDYwMjUzMmM4ODAzOWFjN2Q2MSIsImlhdCI6MTc2NjQ0Nzg5MiwiZXhwIjoxNzY3MzExODkyfQ.5XhI2I2zBK9ZkWaX-ZFwhDTNzO-mDFg61KLnxOdeC0s
+Content-Type: multipart/form-data; boundary=boundary123
+
+--boundary
+Content-Disposition: form-data; name="productName"
+
+ASUS Gaming Laptop
+--boundary
+Content-Disposition: form-data; name="productDesc"
+
+High performance ASUS laptop with latest processor and graphics.
+--boundary
+Content-Disposition: form-data; name="productPrice"
+
+75999
+--boundary
+Content-Disposition: form-data; name="category"
+
+Laptop
+--boundary
+Content-Disposition: form-data; name="brand"
+
+Asus
+--boundary
+Content-Disposition: form-data; name="productimg"; filename="asus.jpg"
+Content-Type: image/jpeg
+
+[]
+--boundary123
+Content-Disposition: form-data; name="productimg"; filename="newImage.jpg"
+Content-Type: image/jpeg
+
+< ./asus.png
+--boundary123--
+
+
+
+
+//for delete
+DELETE http://localhost:8000/api/v1/product/delete/6949c38e6f3d988736d98308
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDc2NDYwMjUzMmM4ODAzOWFjN2Q2MSIsImlhdCI6MTc2NjQ0OTY0OSwiZXhwIjoxNzY3MzEzNjQ5fQ.BlHjicYd1tj3Z3NscVuHKqbHYeLXz-30f-25LYLnBFI

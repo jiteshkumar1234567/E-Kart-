@@ -1,0 +1,76 @@
+                      // FOR REGISTRATION TESTING CODE HERE
+# POST http://localhost:8000/api/v1/user/register
+# Content-Type: application/json
+
+# {
+#   "firstName": "Jitesh",
+#   "lastName": "Kumar",
+#   "email": "yjitesh3203@gmail.com",
+#   "password": "123456"
+# }
+
+                          // FOR REVERIFY TESTING CODE HERE
+# POST http://localhost:8000/api/v1/user/reverify
+# Content-Type: application/json
+
+# {
+#   "email": "jitesh@gmail.com"
+# }
+
+                            // FOR VERIFY TESTING CODE HERE
+# POST http://localhost:8000/api/v1/user/verify
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDVlNDZhOGE0ZGUwODY3NTcyNjI1ZCIsImlhdCI6MTc2NjE4ODEzOCwiZXhwIjoxNzY2MTg4NzM4fQ._3NrKsFirVLX9NTQh8y9FwQBhqOva2NdUbNmG2LteDs
+
+
+                           // FOR LOGIN TESTING CODE HERE
+POST http://localhost:8000/api/v1/user/login
+Content-Type: application/json
+
+{
+  "email": "yjitesh3203@gmail.com",
+  "password": "123456"
+}
+
+
+                           // FOR LOGGOUT TESTING CODE HERE
+# POST http://localhost:8000/api/v1/user/logout
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDViMDFlY2MyYzA2NzUyNWRiMjIyZSIsImlhdCI6MTc2NjE4MTMzNywiZXhwIjoxNzY3MDQ1MzM3fQ.z5nUFf88ycu25KBzSJAZwLc3yXkEVXslz9XYOb89_jA
+
+
+
+### Forgot Password
+# POST http://localhost:8000/api/v1/user/forgot-password
+# Content-Type: application/json
+
+# {
+#   "email": "jitesh3203@gmail.com"
+# }
+
+
+### Verify OTP
+# POST http://localhost:8000/api/v1/user/verify-otp
+# Content-Type: application/json
+
+# {
+#   "email": "jitesh3203@gmail.com",
+#   "otp": "297505"
+# }
+
+
+
+### Change Password
+# POST http://localhost:8000/api/v1/user/change-password/jitesh3203@gmail.com
+# Content-Type: application/json
+
+# {
+#   "newPassword": "123456",
+#   "confirmPassword": "123456"
+# }
+
+
+
+### Get all users
+GET http://localhost:8000/api/v1/user/all-user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDViMDFlY2MyYzA2NzUyNWRiMjIyZSIsImlhdCI6MTc2NjI2MTg2NywiZXhwIjoxNzY3MTI1ODY3fQ.0OZE52yyaigLS2q4Gda80ukXMmAanfJB-ancQ5eID1Y
+
+
