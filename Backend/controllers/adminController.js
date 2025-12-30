@@ -1080,7 +1080,7 @@
 import { Product } from "../models/productModel.js"
 import { User } from "../models/usermodel.js"
 import { Order } from "../models/orderModel.js"
-import cloudinary from "../utils/cloudinary.js" // 🔥 FIX 1
+import cloudinary from "../utils/Cloudinary.js" // 🔥 FIX 1
 
 /* ================= ADD PRODUCT ================= */
 export const addProduct = async (req, res) => {
