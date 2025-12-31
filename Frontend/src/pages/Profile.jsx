@@ -127,9 +127,9 @@ const Profile = () => {
               <TabsTrigger value="Profile" className="flex-1">
                 Profile
               </TabsTrigger>
-              <TabsTrigger value="Orders" className="flex-1">
+              {/* <TabsTrigger value="Orders" className="flex-1">
                 Orders
-              </TabsTrigger>
+              </TabsTrigger> */}
             </TabsList>
 
             <TabsContent value="Profile">

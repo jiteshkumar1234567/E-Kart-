@@ -26,7 +26,7 @@ const ProcessOrder = () => {
   const placeOrder = async () => {
     try {
       await axios.post(
-        "http://localhost:8000/api/v1/order/create",
+        `http://localhost:8000/api/v1/order/create`,
         {
           items: cartItems,
           address,

@@ -12,7 +12,7 @@ const AdminOrders = () => {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/v1/admin/orders",
+        `http://localhost:8000/api/v1/admin/orders`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setOrders(res.data.orders);

@@ -397,66 +397,119 @@
 
 
 
-import { Order } from "../models/orderModel.js";
-import { Cart } from "../models/cartModel.js";
-import { Product } from "../models/productModel.js";
+// import { Order } from "../models/orderModel.js";
+// import { Cart } from "../models/cartModel.js";
+// import { Product } from "../models/productModel.js";
 
-/* ================= CREATE ORDER ================= */
+// /* ================= CREATE ORDER ================= */
+// // export const createOrder = async (req, res) => {
+// //   try {
+// //     const userId = req.id;
+// //     const { items, address, totalAmount } = req.body;
+
+// //     console.log("ADDRESS RECEIVED 👉", address);
+// //     console.log("ITEMS RECEIVED 👉", items);
+
+// //     if (!items || items.length === 0) {
+// //       return res.status(400).json({
+// //         success: false,
+// //         message: "Cart is empty",
+// //       });
+// //     }
+
+// //     // ✅ productId ab STRING aa raha hai
+// //     const firstProductId = items[0].productId;
+
+// //     const product = await Product.findById(firstProductId);
+// //     if (!product) {
+// //       return res.status(404).json({
+// //         success: false,
+// //         message: "Product not found",
+// //       });
+// //     }
+
+// //     if (!product.createdBy) {
+// //       return res.status(400).json({
+// //         success: false,
+// //         message: "Admin not found for this product",
+// //       });
+// //     }
+
+// //     const adminId = product.createdBy;
+
+// //     const formattedItems = items.map((item) => ({
+// //       product: item.productId, // ✅ direct ID
+// //       quantity: item.quantity,
+// //       price: item.price,
+// //     }));
+
+// //     const order = await Order.create({
+// //       user: userId,
+// //       admin: adminId,
+// //       items: formattedItems,
+// //       address,
+// //       totalAmount,
+// //       paymentMethod: "COD",
+// //       paymentStatus: "pending",
+// //     });
+
+// //     await Cart.findOneAndUpdate(
+// //       { userId },
+// //       { items: [], totalPrice: 0 }
+// //     );
+
+// //     res.status(201).json({
+// //       success: true,
+// //       message: "Order placed successfully",
+// //       order,
+// //     });
+// //   } catch (error) {
+// //     console.error("ORDER ERROR:", error);
+// //     res.status(500).json({
+// //       success: false,
+// //       message: error.message,
+// //     });
+// //   }
+// // };
+
+
 // export const createOrder = async (req, res) => {
 //   try {
 //     const userId = req.id;
-//     const { items, address, totalAmount } = req.body;
+//     const { address } = req.body;
 
-//     console.log("ADDRESS RECEIVED 👉", address);
-//     console.log("ITEMS RECEIVED 👉", items);
-
-//     if (!items || items.length === 0) {
+//     if (!address) {
 //       return res.status(400).json({
 //         success: false,
-//         message: "Cart is empty",
+//         message: "Address missing",
 //       });
 //     }
 
-//     // ✅ productId ab STRING aa raha hai
-//     const firstProductId = items[0].productId;
-
-//     const product = await Product.findById(firstProductId);
-//     if (!product) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Product not found",
-//       });
-//     }
-
-//     if (!product.createdBy) {
+//     const cart = await Cart.findOne({ userId }).populate("items.productId");
+//     if (!cart || cart.items.length === 0) {
 //       return res.status(400).json({
 //         success: false,
-//         message: "Admin not found for this product",
+//         message: "Cart empty",
 //       });
 //     }
 
-//     const adminId = product.createdBy;
-
-//     const formattedItems = items.map((item) => ({
-//       product: item.productId, // ✅ direct ID
-//       quantity: item.quantity,
-//       price: item.price,
-//     }));
+//     const adminId = cart.items[0].productId.createdBy;
 
 //     const order = await Order.create({
 //       user: userId,
 //       admin: adminId,
-//       items: formattedItems,
-//       address,
-//       totalAmount,
+//       items: cart.items.map((item) => ({
+//         product: item.productId._id,
+//         quantity: item.quantity,
+//         price: item.price,
+//       })),
+//       address, // ✅ IMPORTANT
+//       totalAmount: cart.totalPrice,
 //       paymentMethod: "COD",
-//       paymentStatus: "pending",
+//       paymentStatus: "pending", // ✅ ENUM FIX
 //     });
 
-//     await Cart.findOneAndUpdate(
-//       { userId },
-//       { items: [], totalPrice: 0 }
-//     );
+//     await Cart.findOneAndDelete({ userId });
 
 //     res.status(201).json({
 //       success: true,
@@ -473,6 +526,162 @@ import { Product } from "../models/productModel.js";
 // };
 
 
+
+// // export const createOrder = async (req, res) => {
+// //   try {
+// //     const userId = req.id;
+
+// //     const cart = await Cart.findOne({ userId }).populate("items.productId");
+// //     if (!cart || cart.items.length === 0) {
+// //       return res.status(400).json({ success: false, message: "Cart empty" });
+// //     }
+
+// //     // 🔥 IMPORTANT FIX
+// //     const adminId = cart.items[0].productId.createdBy;
+
+// //     const order = await Order.create({
+// //       user: userId,
+// //       admin: adminId, // ✅ THIS LINE FIXES EVERYTHING
+// //       items: cart.items.map((item) => ({
+// //         product: item.productId._id,
+// //         quantity: item.quantity,
+// //         price: item.price,
+// //       })),
+// //       totalAmount: cart.totalPrice,
+// //       paymentMethod: "COD",
+// //       paymentStatus: "Pending",
+// //     });
+
+// //     await Cart.findOneAndDelete({ userId });
+
+// //     res.status(201).json({
+// //       success: true,
+// //       order,
+// //     });
+// //   } catch (error) {
+// //     res.status(500).json({ success: false, message: error.message });
+// //   }
+// // };
+
+
+// /* ================= MY ORDERS ================= */
+// export const getMyOrders = async (req, res) => {
+//   try {
+//     const orders = await Order.find({ user: req.id })
+//       .populate("items.product")
+//       .sort({ createdAt: -1 });
+
+//     res.json({ success: true, orders });
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
+
+// /* ================= ORDER BY ID ================= */
+// export const getOrderById = async (req, res) => {
+//   try {
+//     const order = await Order.findOne({
+//       _id: req.params.id,
+//       user: req.id,
+//     }).populate("items.product");
+
+//     if (!order) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Order not found",
+//       });
+//     }
+
+//     res.json({ success: true, order });
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
+
+
+
+
+
+
+// export const markDelivered = async (req, res) => {
+//   try {
+//     const { orderId } = req.params;
+
+//     const order = await Order.findById(orderId);
+//     if (!order) return res.status(404).json({ success: false, message: "Order not found" });
+
+//     order.paymentStatus = "delivered";
+//     await order.save();
+
+//     res.json({ success: true, message: "Order marked as delivered", order });
+//   } catch (err) {
+//     res.status(500).json({ success: false, message: err.message });
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Order } from "../models/orderModel.js";
+import { Cart } from "../models/cartModel.js";
+import { Product } from "../models/productModel.js";
+
+/* ================= CREATE ORDER (USER) ================= */
 export const createOrder = async (req, res) => {
   try {
     const userId = req.id;
@@ -481,7 +690,7 @@ export const createOrder = async (req, res) => {
     if (!address) {
       return res.status(400).json({
         success: false,
-        message: "Address missing",
+        message: "Address is required",
       });
     }
 
@@ -489,10 +698,11 @@ export const createOrder = async (req, res) => {
     if (!cart || cart.items.length === 0) {
       return res.status(400).json({
         success: false,
-        message: "Cart empty",
+        message: "Cart is empty",
       });
     }
 
+    // 🔥 ADMIN ID PRODUCT SE
     const adminId = cart.items[0].productId.createdBy;
 
     const order = await Order.create({
@@ -503,10 +713,10 @@ export const createOrder = async (req, res) => {
         quantity: item.quantity,
         price: item.price,
       })),
-      address, // ✅ IMPORTANT
+      address,
       totalAmount: cart.totalPrice,
       paymentMethod: "COD",
-      paymentStatus: "pending", // ✅ ENUM FIX
+      paymentStatus: "pending",
     });
 
     await Cart.findOneAndDelete({ userId });
@@ -525,53 +735,17 @@ export const createOrder = async (req, res) => {
   }
 };
 
-
-
-// export const createOrder = async (req, res) => {
-//   try {
-//     const userId = req.id;
-
-//     const cart = await Cart.findOne({ userId }).populate("items.productId");
-//     if (!cart || cart.items.length === 0) {
-//       return res.status(400).json({ success: false, message: "Cart empty" });
-//     }
-
-//     // 🔥 IMPORTANT FIX
-//     const adminId = cart.items[0].productId.createdBy;
-
-//     const order = await Order.create({
-//       user: userId,
-//       admin: adminId, // ✅ THIS LINE FIXES EVERYTHING
-//       items: cart.items.map((item) => ({
-//         product: item.productId._id,
-//         quantity: item.quantity,
-//         price: item.price,
-//       })),
-//       totalAmount: cart.totalPrice,
-//       paymentMethod: "COD",
-//       paymentStatus: "Pending",
-//     });
-
-//     await Cart.findOneAndDelete({ userId });
-
-//     res.status(201).json({
-//       success: true,
-//       order,
-//     });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: error.message });
-//   }
-// };
-
-
-/* ================= MY ORDERS ================= */
+/* ================= USER ORDERS ================= */
 export const getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({ user: req.id })
       .populate("items.product")
       .sort({ createdAt: -1 });
 
-    res.json({ success: true, orders });
+    res.status(200).json({
+      success: true,
+      orders,
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -580,7 +754,7 @@ export const getMyOrders = async (req, res) => {
   }
 };
 
-/* ================= ORDER BY ID ================= */
+/* ================= USER ORDER BY ID ================= */
 export const getOrderById = async (req, res) => {
   try {
     const order = await Order.findOne({
@@ -595,7 +769,10 @@ export const getOrderById = async (req, res) => {
       });
     }
 
-    res.json({ success: true, order });
+    res.status(200).json({
+      success: true,
+      order,
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -604,23 +781,53 @@ export const getOrderById = async (req, res) => {
   }
 };
 
+/* ================= ADMIN ORDERS ================= */
+export const getAdminOrders = async (req, res) => {
+  try {
+    const adminId = req.id;
 
+    const orders = await Order.find({ admin: adminId })
+      .populate("user", "firstName lastName email")
+      .populate("items.product")
+      .sort({ createdAt: -1 });
 
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
-
-
+/* ================= ADMIN MARK DELIVERED ================= */
 export const markDelivered = async (req, res) => {
   try {
     const { orderId } = req.params;
 
     const order = await Order.findById(orderId);
-    if (!order) return res.status(404).json({ success: false, message: "Order not found" });
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
 
     order.paymentStatus = "delivered";
     await order.save();
 
-    res.json({ success: true, message: "Order marked as delivered", order });
-  } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    res.status(200).json({
+      success: true,
+      message: "Order marked as delivered",
+      order,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };

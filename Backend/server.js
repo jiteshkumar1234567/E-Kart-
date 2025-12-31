@@ -7,7 +7,7 @@ import productRoute from "./routes/productRoute.js"
 import cartRoute from "./routes/cartRoute.js"
 import adminRoutes from "./routes/adminRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js";
-import adminOrderRoutes from "./routes/adminOrderRoutes.js";
+
 
 const app = express()
 const PORT = process.env.PORT || 8000
@@ -24,9 +24,7 @@ app.use("/api/v1/user", userRoute)
 app.use("/api/v1/product", productRoute)
 app.use("/api/v1/cart", cartRoute)
 app.use("/api/v1/admin", adminRoutes)
-app.use("/api/v1/order", orderRoutes);
-app.use("/api/v1/admin", adminOrderRoutes);
-
+app.use("/api/v1/order", orderRoutes)
 
 
 

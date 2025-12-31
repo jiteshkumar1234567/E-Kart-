@@ -14,22 +14,22 @@
 # Content-Type: application/json
 
 # {
-#   "email": "jitesh@gmail.com"
+#   "email": "yjitesh3203@gmail.com"
 # }
 
                             // FOR VERIFY TESTING CODE HERE
 # POST http://localhost:8000/api/v1/user/verify
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDVlNDZhOGE0ZGUwODY3NTcyNjI1ZCIsImlhdCI6MTc2NjE4ODEzOCwiZXhwIjoxNzY2MTg4NzM4fQ._3NrKsFirVLX9NTQh8y9FwQBhqOva2NdUbNmG2LteDs
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NTRhMDZmNTZiMDA1ZWM3NzAwYTg0NyIsImlhdCI6MTc2NzE1NjQ3MSwiZXhwIjoxNzY3MTU3MDcxfQ.ea_gOhi_1KeBIRxKoqH5JRqfZcYoF8Dv5L9SAKm8d8I
 
 
                            // FOR LOGIN TESTING CODE HERE
-POST http://localhost:8000/api/v1/user/login
-Content-Type: application/json
+# POST http://localhost:8000/api/v1/user/login
+# Content-Type: application/json
 
-{
-  "email": "yjitesh3203@gmail.com",
-  "password": "123456"
-}
+# {
+#   "email": "yjitesh3203@gmail.com",
+#   "password": "123456"
+# }
 
 
                            // FOR LOGGOUT TESTING CODE HERE
@@ -70,7 +70,7 @@ Content-Type: application/json
 
 
 ### Get all users
-GET http://localhost:8000/api/v1/user/all-user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDViMDFlY2MyYzA2NzUyNWRiMjIyZSIsImlhdCI6MTc2NjI2MTg2NywiZXhwIjoxNzY3MTI1ODY3fQ.0OZE52yyaigLS2q4Gda80ukXMmAanfJB-ancQ5eID1Y
+# GET http://localhost:8000/api/v1/user/all-user
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDViMDFlY2MyYzA2NzUyNWRiMjIyZSIsImlhdCI6MTc2NjI2MTg2NywiZXhwIjoxNzY3MTI1ODY3fQ.0OZE52yyaigLS2q4Gda80ukXMmAanfJB-ancQ5eID1Y
 
 

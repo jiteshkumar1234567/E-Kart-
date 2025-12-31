@@ -20,7 +20,7 @@ const Cart = () => {
   const fetchCart = async () => {
     try {
       setLoading(true)
-      const res = await axios.get("http://localhost:8000/api/v1/cart", {
+      const res = await axios.get(`http://localhost:8000/api/v1/cart`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       dispatch(setCart(res.data.cart))
@@ -39,7 +39,7 @@ const Cart = () => {
   const updateQty = async (productId, type) => {
     try {
       const res = await axios.put(
-        "http://localhost:8000/api/v1/cart/update",
+        `http://localhost:8000/api/v1/cart/update`,
         { productId, type },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -52,7 +52,7 @@ const Cart = () => {
   const removeItem = async (productId) => {
     try {
       const res = await axios.delete(
-        "http://localhost:8000/api/v1/cart/remove",
+        `http://localhost:8000/api/v1/cart/remove`,
         {
           headers: { Authorization: `Bearer ${token}` },
           data: { productId },

@@ -14,7 +14,7 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:8000/api/v1/order/my-orders", {
+        const res = await axios.get(`http://localhost:8000/api/v1/order/my-orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.data.success) {

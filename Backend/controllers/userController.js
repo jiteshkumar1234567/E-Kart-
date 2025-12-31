@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import { verifyEmail } from "../emailVerify/verifyEmail.js";
 import { Session } from "../models/sessionmodel.js";
 import { sendOTPMail } from "../emailVerify/sendotpmail.js";
+import cloudinary from "../Utils/Cloudinary.js";
+
 
 
 export const register = async (req, res) => {

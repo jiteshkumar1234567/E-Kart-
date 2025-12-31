@@ -1,5 +1,5 @@
 import { Product } from "../models/productModel.js"
-// import cloudinary from "../Utils/Cloudinary.js"
+import cloudinary from "../Utils/Cloudinary.js"
 import getDataUri from "../Utils/dataUri.js"
 
 
