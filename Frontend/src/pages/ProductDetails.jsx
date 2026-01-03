@@ -16,6 +16,7 @@ import {
 
 
 import {  RotateCcw, BadgeCheck, Headphones, PackageCheck } from "lucide-react";
+import { BASE_URL } from "@/lib/api";
 
 
 const ProductDetails = () => {
@@ -34,7 +35,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/v1/product/${id}`
+        `${BASE_URL}/product/${id}`
         );
         if (res.data.success) setProduct(res.data.product);
       } catch {
@@ -49,7 +50,7 @@ const ProductDetails = () => {
   const addToCart = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/cart/add`,
+      `${BASE_URL}/cart/add`,
         { productId: product._id, quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );

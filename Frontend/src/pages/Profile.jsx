@@ -8,6 +8,7 @@ import axios from "axios"
 import { toast } from "sonner"
 import { setUser } from "@/redux/userSlice"
 import userlogo from "../assets/user.jpg"
+import { BASE_URL } from "@/lib/api"
 
 const Profile = () => {
   const { user } = useSelector((store) => store.user)
@@ -76,7 +77,7 @@ const Profile = () => {
       if (file) formData.append("profilePic", file)
 
       const res = await axios.put(
-        `http://localhost:8000/api/v1/user/update/${user._id}`,
+      `${BASE_URL}/user/update/${user._id}`,
         formData,
         {
           headers: {

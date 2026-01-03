@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "@/lib/api";
 
 const MyOrders = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:8000/api/v1/order/my-orders`, {
+        const res = await axios.get(`${BASE_URL}/order/my-orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.data.success) {

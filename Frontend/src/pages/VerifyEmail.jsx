@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/lib/api"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
@@ -10,7 +11,7 @@ const VerifyEmail = () => {
   const verifyUserEmail = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/verify`,
+       `${BASE_URL}/user/verify`,
         {},
         {
           headers: {

@@ -3,6 +3,7 @@ import axios from "axios"
 import { Trash2, SquarePen, Plus, Search } from "lucide-react"
 import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
+import { BASE_URL } from "@/lib/api"
 
 const AdminProduct = () => {
   const [products, setProducts] = useState([])
@@ -16,7 +17,7 @@ const AdminProduct = () => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/v1/admin/my-products`,
+      `${BASE_URL}/admin/my-products`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,7 +50,7 @@ const AdminProduct = () => {
   const deleteProduct = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:8000/api/v1/admin/delete-product/${id}`,
+        `${BASE_URL}/admin/delete-product/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

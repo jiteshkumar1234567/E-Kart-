@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { X } from "lucide-react";
+import { BASE_URL } from "@/lib/api";
 
 
 
@@ -28,7 +29,7 @@ const EditProduct = () => {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-        `http://localhost:8000/api/v1/admin/product/${id}`,
+        `${BASE_URL}/admin/product/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -77,7 +78,7 @@ const EditProduct = () => {
 
     try {
       await axios.put(
-        `http://localhost:8000/api/v1/admin/update-product/${id}`,
+        `${BASE_URL}/admin/update-product/${id}`,
         formData,
         {
           headers: {

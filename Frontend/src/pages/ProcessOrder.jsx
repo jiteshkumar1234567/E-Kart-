@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
+import { BASE_URL } from "@/lib/api";
 
 const ProcessOrder = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const ProcessOrder = () => {
   const placeOrder = async () => {
     try {
       await axios.post(
-        `http://localhost:8000/api/v1/order/create`,
+       `${BASE_URL}/order/create`,
         {
           items: cartItems,
           address,

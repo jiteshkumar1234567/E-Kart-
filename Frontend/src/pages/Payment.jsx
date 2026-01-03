@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import Lottie from "lottie-react";
 import successAnimation from "../assets/Delivery guy.json"; // <-- Correct path & name
+import { BASE_URL } from "@/lib/api";
 
 
 const Payment = () => {
@@ -32,7 +33,7 @@ const Payment = () => {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:8000/api/v1/order/create",
+        `${BASE_URL}/order/create`,
         { items: cartItems, address, totalAmount },
         { headers: { Authorization: `Bearer ${token}` } }
       );

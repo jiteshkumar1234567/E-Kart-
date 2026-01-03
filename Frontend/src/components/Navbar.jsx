@@ -7,6 +7,9 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/redux/userSlice";
 
+      import { BASE_URL } from "../lib/api";
+
+
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,8 +22,7 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.post(
-        `http://localhost:8000/api/v1/user/logout`,
+      const res = await axios.post(`${BASE_URL}/user/logout`,
         {},
         {
           headers: { Authorization: `Bearer ${accessToken}` },

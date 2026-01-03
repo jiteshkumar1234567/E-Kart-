@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { UserMinus } from "lucide-react"; // ✅ import icon
+import { BASE_URL } from "@/lib/api";
 
 const AdminUsers = () => {
   const [admins, setAdmins] = useState([]);
@@ -15,7 +16,7 @@ const AdminUsers = () => {
     const fetchAdmins = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/v1/admin/users`,
+      `${BASE_URL}/admin/users`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

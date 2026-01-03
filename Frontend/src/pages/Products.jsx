@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { BASE_URL } from "@/lib/api"
 
 const Product = () => {
   const [allProducts, setAllProducts] = useState([])
@@ -35,7 +36,7 @@ const Product = () => {
     try {
       setLoading(true)
       const res = await axios.get(
-        `http://localhost:8000/api/v1/product/getallproducts`
+        `${BASE_URL}/product/getallproducts`
       )
       if (res.data.success) {
         setAllProducts(res.data.products)

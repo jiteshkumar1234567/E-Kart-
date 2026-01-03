@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
+ import { BASE_URL } from "../lib/api";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -155,12 +157,10 @@ const App = () => {
       }
 
       try {
-        const res = await axios.get(
-          "http://localhost:8000/api/v1/user/me",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+const res = await axios.get(`${BASE_URL}/user/me`, {
+  headers: { Authorization: `Bearer ${token}` },
+});
+
 
         if (res.data.success) {
           dispatch(setUser(res.data.user));

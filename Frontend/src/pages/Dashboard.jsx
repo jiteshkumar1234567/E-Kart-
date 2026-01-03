@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import { toast } from "sonner";
 import SalesGraph from "@/components/ui/SalesGraph";
+import { BASE_URL } from "@/lib/api";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -32,7 +33,7 @@ const Dashboard = () => {
       try {
         const token = localStorage.getItem("accessToken");
         const res = await axios.get(
-          `http://localhost:8000/api/v1/admin/stats`,
+         `${BASE_URL}/admin/stats`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

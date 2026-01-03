@@ -7,6 +7,7 @@ import { CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { BASE_URL } from "@/lib/api"
 
 const AddProduct = () => {
   const [productName, setProductName] = useState("")
@@ -54,7 +55,7 @@ Array.from(images).forEach((img) => {
       const token = localStorage.getItem("accessToken")
 
       const res = await axios.post(
-        `http://localhost:8000/api/v1/admin/add-product`,
+       `${BASE_URL}/admin/add-product`,
         formData,
         {
           headers: {

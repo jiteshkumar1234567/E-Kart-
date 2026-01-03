@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
+import { BASE_URL } from "@/lib/api";
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const OrderDetails = () => {
     const fetchOrder = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/v1/order/${id}`,
+          `${BASE_URL}/order/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

@@ -7,6 +7,8 @@ import { setCart } from "@/redux/productSlice";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
 
+import { BASE_URL } from "../lib/api";
+
 const ProductCard = ({ product, loading }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,7 +46,7 @@ const ProductCard = ({ product, loading }) => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/cart/add`,
+      `${BASE_URL}/cart/add`,
         { productId: product._id },
         {
           headers: {

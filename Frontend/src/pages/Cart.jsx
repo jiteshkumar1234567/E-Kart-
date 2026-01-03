@@ -5,6 +5,7 @@ import { toast } from "sonner"
 import { Minus, Plus, Trash2, Tag, ShoppingCart } from "lucide-react"
 import { setCart } from "@/redux/productSlice"
 import { useState,useEffect } from "react"
+import { BASE_URL } from "@/lib/api"
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -20,7 +21,7 @@ const Cart = () => {
   const fetchCart = async () => {
     try {
       setLoading(true)
-      const res = await axios.get(`http://localhost:8000/api/v1/cart`, {
+      const res = await axios.get(`${BASE_URL}/cart`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       dispatch(setCart(res.data.cart))
@@ -39,7 +40,7 @@ const Cart = () => {
   const updateQty = async (productId, type) => {
     try {
       const res = await axios.put(
-        `http://localhost:8000/api/v1/cart/update`,
+       `${BASE_URL}/cart/update`,
         { productId, type },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -52,7 +53,7 @@ const Cart = () => {
   const removeItem = async (productId) => {
     try {
       const res = await axios.delete(
-        `http://localhost:8000/api/v1/cart/remove`,
+       `${BASE_URL}/cart/remove`,
         {
           headers: { Authorization: `Bearer ${token}` },
           data: { productId },

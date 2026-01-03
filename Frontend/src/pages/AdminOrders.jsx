@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "@/lib/api";
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -12,7 +13,7 @@ const AdminOrders = () => {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/v1/admin/orders`,
+        `${BASE_URL}/admin/orders`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setOrders(res.data.orders);
@@ -27,7 +28,7 @@ const AdminOrders = () => {
   const updateStatus = async (orderId, status) => {
     try {
       await axios.put(
-        `http://localhost:8000/api/v1/admin/orders/${orderId}/status`,
+        `${BASE_URL}/admin/orders/${orderId}/status`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
