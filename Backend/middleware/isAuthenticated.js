@@ -1,41 +1,140 @@
 
-import jwt from "jsonwebtoken";
-import { User } from "../models/usermodel.js";
+// import jwt from "jsonwebtoken";
+// import { User } from "../models/usermodel.js";
+
+// // export const isAuthenticated = async (req, res, next) => {
+// //   try {
+// //     const authHeader = req.headers.authorization;
+// //     if (!authHeader || !authHeader.startsWith("Bearer ")) {
+// //       return res.status(401).json({ success: false, message: "No token" });
+// //     }
+
+// //     const token = authHeader.split(" ")[1];
+// //     const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+// //     const user = await User.findById(decoded.id).select("_id role");
+// //     if (!user) {
+// //       return res.status(401).json({ success: false, message: "User not found" });
+// //     }
+
+// //     req.user = user;
+// //     req.id = user._id;
+// //     next();
+// //   } catch (err) {
+// //     res.status(401).json({ success: false, message: "Auth failed" });
+// //   }
+// // };
+
 
 // export const isAuthenticated = async (req, res, next) => {
 //   try {
-//     const authHeader = req.headers.authorization;
-//     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-//       return res.status(401).json({ success: false, message: "No token" });
+//     let token;
+
+//     // ✅ 1️⃣ COOKIE se token (Render / Browser)
+//     if (req.cookies?.accessToken) {
+//       token = req.cookies.accessToken;
 //     }
 
-//     const token = authHeader.split(" ")[1];
+//     // ✅ 2️⃣ HEADER se token (Postman / Mobile)
+//     if (
+//       !token &&
+//       req.headers.authorization &&
+//       req.headers.authorization.startsWith("Bearer ")
+//     ) {
+//       token = req.headers.authorization.split(" ")[1];
+//     }
+
+//     if (!token) {
+//       return res.status(401).json({
+//         success: false,
+//         message: "Unauthorized - No token",
+//       });
+//     }
+
 //     const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-//     const user = await User.findById(decoded.id).select("_id role");
+//     const user = await User.findById(decoded.id).select("_id role email");
 //     if (!user) {
-//       return res.status(401).json({ success: false, message: "User not found" });
+//       return res.status(401).json({
+//         success: false,
+//         message: "User not found",
+//       });
 //     }
 
 //     req.user = user;
 //     req.id = user._id;
 //     next();
-//   } catch (err) {
-//     res.status(401).json({ success: false, message: "Auth failed" });
+//   } catch (error) {
+//     return res.status(401).json({
+//       success: false,
+//       message: "Authentication failed",
+//     });
 //   }
 // };
 
 
+// export const isAdmin = (req, res, next) => {
+//   if (req.user && req.user.role === "admin") {
+//     next();
+//   } else {
+//     return res.status(403).json({
+//       success: false,
+//       message: "Access Denied - Admins Only",
+//     });
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import jwt from "jsonwebtoken";
+import { User } from "../models/usermodel.js";
+
 export const isAuthenticated = async (req, res, next) => {
   try {
-    let token;
+    let token = null;
 
-    // ✅ 1️⃣ COOKIE se token (Render / Browser)
-    if (req.cookies?.accessToken) {
+    // 1️⃣ Cookie token (Browser / Render)
+    if (req.cookies && req.cookies.accessToken) {
       token = req.cookies.accessToken;
     }
 
-    // ✅ 2️⃣ HEADER se token (Postman / Mobile)
+    // 2️⃣ Authorization header (Bearer token)
     if (
       !token &&
       req.headers.authorization &&
@@ -47,13 +146,14 @@ export const isAuthenticated = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({
         success: false,
-        message: "Unauthorized - No token",
+        message: "Unauthorized - Token missing",
       });
     }
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
     const user = await User.findById(decoded.id).select("_id role email");
+
     if (!user) {
       return res.status(401).json({
         success: false,
@@ -63,8 +163,10 @@ export const isAuthenticated = async (req, res, next) => {
 
     req.user = user;
     req.id = user._id;
+
     next();
   } catch (error) {
+    console.error("Auth error:", error.message);
     return res.status(401).json({
       success: false,
       message: "Authentication failed",
@@ -72,15 +174,13 @@ export const isAuthenticated = async (req, res, next) => {
   }
 };
 
-
 export const isAdmin = (req, res, next) => {
   if (req.user && req.user.role === "admin") {
-    next();
-  } else {
-    return res.status(403).json({
-      success: false,
-      message: "Access Denied - Admins Only",
-    });
+    return next();
   }
-};
 
+  return res.status(403).json({
+    success: false,
+    message: "Access Denied - Admin only",
+  });
+};
