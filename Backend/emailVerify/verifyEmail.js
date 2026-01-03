@@ -45,7 +45,7 @@ html: `
     </p>
 
     <div style="text-align:center; margin:30px 0;">
-      <a href="http://localhost:5173/verify/${token}"
+      <a href="https://e-kart-2vqj.onrender.com/verify/${token}"
          style="
            background:#4f46e5;
            color:#ffffff;
