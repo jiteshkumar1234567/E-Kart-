@@ -1,13 +1,12 @@
-import React from "react"
-import { Button } from "./ui/button"
-import { ArrowRight } from "lucide-react"
+import React from "react";
+import { Button } from "./ui/button";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
     <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white pt-32 pb-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-
           {/* Left Content */}
           <div>
             <span className="inline-block mb-4 px-4 py-1 text-sm font-semibold bg-white/20 rounded-full">
@@ -29,9 +28,9 @@ const Hero = () => {
                 Shop Now <ArrowRight className="ml-2" size={18} />
               </Button>
 
-             <Button 
-  variant="outline"
-  className="
+              <Button
+                variant="outline"
+                className="
     border-2 border-white
     text-white
     bg-transparent
@@ -41,10 +40,9 @@ const Hero = () => {
     hover:shadow-lg hover:scale-105
     focus:outline-none focus:ring-2 focus:ring-white/50
   "
->
-  View Deals
-</Button>
-
+              >
+                View Deals
+              </Button>
             </div>
           </div>
 
@@ -54,15 +52,16 @@ const Hero = () => {
 
             <img
               src="/hero1.png"
-              alt="Electronics" width={500} height={400}
+              alt="Electronics"
+              width={500}
+              height={400}
               className="relative rounded-lg w-full max-w-md drop-shadow-2xl animate-float"
             />
           </div>
-
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

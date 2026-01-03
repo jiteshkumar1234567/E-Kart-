@@ -97,7 +97,7 @@ const ProductDetails = () => {
 
         {/* 🔹 DETAILS */}
         <div className="bg-white p-8 rounded-2xl shadow-sm space-y-5">
-          <h1 className="text-3xl font-bold">{product.productName}</h1>
+          <h1 className="text-2xl font-bold">{product.productName}</h1>
 
           <p className="text-sm text-gray-800 capitalize">
             {product.brand} • {product.category}
@@ -134,7 +134,7 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          {/* Add to cart */}
+          {/* Add to cart
           <button
             onClick={addToCart}
             disabled={added}
@@ -144,8 +144,31 @@ const ProductDetails = () => {
                 : "bg-pink-500 hover:bg-pink-600 text-white"
             }`}
           >
-            {added ? "Added to Cart" : "Add to Cart"}
-          </button>
+              {added ? <Check size={16} /> : <ShoppingCart size={32} />}
+            {added ? "Added to Cart" : " Add to Cart"}
+          </button> */}
+
+
+{/* Add to cart */}
+<button
+  onClick={addToCart}
+  disabled={added}
+  className={`w-full py-3 rounded-xl text-lg font-semibold flex items-center justify-center gap-2 transition ${
+    added
+      ? "bg-green-500 text-white"
+      : "bg-pink-500 hover:bg-pink-600 text-white"
+  }`}
+>
+  {added ? (
+    <Check size={20} />
+  ) : (
+    <ShoppingCart size={20} />
+  )}
+  <span>{added ? "Added to Cart" : "Add to Cart"}</span>
+</button>
+
+
+
 
           {/* Trust Info */}
           <div className="grid grid-cols-2 gap-4 text-sm pt-4 border-t">

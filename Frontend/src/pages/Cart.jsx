@@ -65,16 +65,31 @@ const Cart = () => {
     }
   }
 
+
+                        //Coupne Codes For Discount Like (10%, 15%, 50%, 80%) ETC:
+const coupons = {
+  SAVE10: 10,   // 10% discount
+  TRQ591: 15,   // 15% discount
+  MSQ009: 50,   // 50% discount
+  MSQ070: 80,   // 50% discount
+}
+
   const applyPromo = () => {
-    if (promo.toUpperCase() === "SAVE10") {
-      const discountAmount = Math.round(cart.totalPrice * 0.1)
-      setDiscount(discountAmount)
-      toast.success("Promo code applied 🎉")
-    } else {
-      setDiscount(0)
-      toast.error("Invalid promo code")
-    }
+  const code = promo.toUpperCase()
+
+  if (coupons[code]) {
+    const discountPercent = coupons[code]
+    const discountAmount = Math.round(cart.totalPrice * (discountPercent / 100))
+
+    setDiscount(discountAmount)
+    toast.success(`${code} applied 🎉 (${discountPercent}% OFF)`)
+  } else {
+    setDiscount(0)
+    toast.error("Invalid promo code")
   }
+}
+
+
 
   const handleCheckout = () => {
     toast.success("Welcome To Checkout Page")
