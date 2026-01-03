@@ -26,9 +26,6 @@ import { User } from "../models/usermodel.js";
 // };
 
 
-import jwt from "jsonwebtoken";
-import { User } from "../models/usermodel.js";
-
 export const isAuthenticated = async (req, res, next) => {
   try {
     let token;

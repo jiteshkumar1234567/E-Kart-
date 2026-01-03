@@ -8,13 +8,14 @@ import cartRoute from "./routes/cartRoute.js"
 import adminRoutes from "./routes/adminRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js";
 import cookieParser from "cookie-parser";
-app.use(cookieParser());
+
 
 
 const app = express()
 const PORT = process.env.PORT || 8000
 
 // Middleware
+app.use(cookieParser());
 app.use(express.json())
 
 app.use(cors({
