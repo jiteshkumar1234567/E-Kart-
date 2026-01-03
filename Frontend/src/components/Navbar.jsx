@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/redux/userSlice";
 
-      import { BASE_URL } from "../lib/api";
+ import { BASE_URL } from "../lib/api";
 
 
 const Navbar = () => {

@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { BASE_URL } from "@/lib/api";
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 const ProcessOrder = () => {
   const navigate = useNavigate();

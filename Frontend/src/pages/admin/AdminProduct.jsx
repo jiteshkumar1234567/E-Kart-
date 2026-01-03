@@ -3,7 +3,8 @@ import axios from "axios"
 import { Trash2, SquarePen, Plus, Search } from "lucide-react"
 import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
-import { BASE_URL } from "@/lib/api"
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 const AdminProduct = () => {
   const [products, setProducts] = useState([])

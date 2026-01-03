@@ -16,7 +16,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { BASE_URL } from "@/lib/api"
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 const Product = () => {
   const [allProducts, setAllProducts] = useState([])

@@ -40,45 +40,45 @@
 
 # Update product
  
-PUT http://localhost:8000/api/v1/product/update/6949e87f0af94ffbc1b83d47
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDc2NDYwMjUzMmM4ODAzOWFjN2Q2MSIsImlhdCI6MTc2NjQ0Nzg5MiwiZXhwIjoxNzY3MzExODkyfQ.5XhI2I2zBK9ZkWaX-ZFwhDTNzO-mDFg61KLnxOdeC0s
-Content-Type: multipart/form-data; boundary=boundary123
+# PUT http://localhost:8000/api/v1/product/update/6949e87f0af94ffbc1b83d47
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDc2NDYwMjUzMmM4ODAzOWFjN2Q2MSIsImlhdCI6MTc2NjQ0Nzg5MiwiZXhwIjoxNzY3MzExODkyfQ.5XhI2I2zBK9ZkWaX-ZFwhDTNzO-mDFg61KLnxOdeC0s
+# Content-Type: multipart/form-data; boundary=boundary123
 
---boundary
-Content-Disposition: form-data; name="productName"
+# --boundary
+# Content-Disposition: form-data; name="productName"
 
-ASUS Gaming Laptop
---boundary
-Content-Disposition: form-data; name="productDesc"
+# ASUS Gaming Laptop
+# --boundary
+# Content-Disposition: form-data; name="productDesc"
 
-High performance ASUS laptop with latest processor and graphics.
---boundary
-Content-Disposition: form-data; name="productPrice"
+# High performance ASUS laptop with latest processor and graphics.
+# --boundary
+# Content-Disposition: form-data; name="productPrice"
 
-75999
---boundary
-Content-Disposition: form-data; name="category"
+# 75999
+# --boundary
+# Content-Disposition: form-data; name="category"
 
-Laptop
---boundary
-Content-Disposition: form-data; name="brand"
+# Laptop
+# --boundary
+# Content-Disposition: form-data; name="brand"
 
-Asus
---boundary
-Content-Disposition: form-data; name="productimg"; filename="asus.jpg"
-Content-Type: image/jpeg
+# Asus
+# --boundary
+# Content-Disposition: form-data; name="productimg"; filename="asus.jpg"
+# Content-Type: image/jpeg
 
-[]
---boundary123
-Content-Disposition: form-data; name="productimg"; filename="newImage.jpg"
-Content-Type: image/jpeg
+# []
+# --boundary123
+# Content-Disposition: form-data; name="productimg"; filename="newImage.jpg"
+# Content-Type: image/jpeg
 
-< ./asus.png
---boundary123--
+# < ./asus.png
+# --boundary123--
 
 
 
 
 //for delete
-DELETE http://localhost:8000/api/v1/product/delete/6949c38e6f3d988736d98308
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDc2NDYwMjUzMmM4ODAzOWFjN2Q2MSIsImlhdCI6MTc2NjQ0OTY0OSwiZXhwIjoxNzY3MzEzNjQ5fQ.BlHjicYd1tj3Z3NscVuHKqbHYeLXz-30f-25LYLnBFI
+# DELETE http://localhost:8000/api/v1/product/delete/6949c38e6f3d988736d98308
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDc2NDYwMjUzMmM4ODAzOWFjN2Q2MSIsImlhdCI6MTc2NjQ0OTY0OSwiZXhwIjoxNzY3MzEzNjQ5fQ.BlHjicYd1tj3Z3NscVuHKqbHYeLXz-30f-25LYLnBFI

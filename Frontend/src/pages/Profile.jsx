@@ -8,7 +8,8 @@ import axios from "axios"
 import { toast } from "sonner"
 import { setUser } from "@/redux/userSlice"
 import userlogo from "../assets/user.jpg"
-import { BASE_URL } from "@/lib/api"
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 const Profile = () => {
   const { user } = useSelector((store) => store.user)

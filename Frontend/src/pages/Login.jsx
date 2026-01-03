@@ -17,7 +17,8 @@ import { toast } from "sonner"
 import axios from "axios"
 import { useDispatch } from "react-redux"
 import { setUser } from "@/redux/userSlice"
-import { BASE_URL } from "@/lib/api"
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)

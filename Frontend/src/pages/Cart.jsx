@@ -5,7 +5,7 @@ import { toast } from "sonner"
 import { Minus, Plus, Trash2, Tag, ShoppingCart } from "lucide-react"
 import { setCart } from "@/redux/productSlice"
 import { useState,useEffect } from "react"
-import { BASE_URL } from "@/lib/api"
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
 
 const Cart = () => {
   const dispatch = useDispatch()

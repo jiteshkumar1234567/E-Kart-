@@ -5,7 +5,8 @@ import axios from "axios";
 import { toast } from "sonner";
 import Lottie from "lottie-react";
 import successAnimation from "../assets/Delivery guy.json"; // <-- Correct path & name
-import { BASE_URL } from "@/lib/api";
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 
 const Payment = () => {

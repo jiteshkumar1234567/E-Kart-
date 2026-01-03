@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import { toast } from "sonner";
 import SalesGraph from "@/components/ui/salesGraph";
-import { BASE_URL } from "@/lib/api";
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
 
 const Dashboard = () => {
   const location = useLocation();

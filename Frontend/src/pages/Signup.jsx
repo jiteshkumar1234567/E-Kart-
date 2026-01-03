@@ -14,7 +14,8 @@ import { Eye, EyeOff, Loader2 } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import axios from "axios"
-import { BASE_URL } from "@/lib/api"
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false)

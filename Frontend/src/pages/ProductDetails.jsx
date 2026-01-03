@@ -16,7 +16,8 @@ import {
 
 
 import {  RotateCcw, BadgeCheck, Headphones, PackageCheck } from "lucide-react";
-import { BASE_URL } from "@/lib/api";
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 
 const ProductDetails = () => {

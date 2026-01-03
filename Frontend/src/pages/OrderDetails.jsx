@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { BASE_URL } from "@/lib/api";
+import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+
 
 const OrderDetails = () => {
   const { id } = useParams();
