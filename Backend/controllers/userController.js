@@ -139,15 +139,18 @@ export const reVerify = async (req, res) => {
   }
 };
 
+                    //UPDATED LOGIN WITH COOKIES AND SESSIONS
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     if (!email || !password) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
+
     const exisitingUser = await User.findOne({ email });
     if (!exisitingUser) {
       return res.status(400).json({
@@ -155,16 +158,19 @@ export const login = async (req, res) => {
         message: "User not Exists",
       });
     }
+
     const isPasswordValid = await bcrypt.compare(
       password,
       exisitingUser.password
     );
+
     if (!isPasswordValid) {
       return res.status(400).json({
         success: false,
         message: "Invalid Password",
       });
     }
+
     if (exisitingUser.isVerified === false) {
       return res.status(400).json({
         success: false,
@@ -172,13 +178,13 @@ export const login = async (req, res) => {
       });
     }
 
-    // generate token
-
+    // 🔐 TOKEN GENERATE
     const accessToken = jwt.sign(
       { id: exisitingUser._id },
       process.env.SECRET_KEY,
       { expiresIn: "10d" }
     );
+
     const refreshToken = jwt.sign(
       { id: exisitingUser._id },
       process.env.SECRET_KEY,
@@ -188,23 +194,32 @@ export const login = async (req, res) => {
     exisitingUser.isLoggedIn = true;
     await exisitingUser.save();
 
-    // check for existing session or delete
-    const exisitingSession = await Session.findOne({
-      userId: exisitingUser._id,
-    });
-    if (exisitingSession) {
-      await Session.deleteOne({ userId: exisitingUser._id });
-    }
-
-    // create new session
+    // 🔁 SESSION
+    await Session.deleteOne({ userId: exisitingUser._id });
     await Session.create({ userId: exisitingUser._id });
+
+    // 🍪 COOKIES (🔥 MOST IMPORTANT)
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,      // Render HTTPS
+      sameSite: "none",  // cross-site
+      maxAge: 10 * 24 * 60 * 60 * 1000,
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
+
+    // ✅ FINAL RESPONSE
     return res.status(200).json({
       success: true,
       message: `Welcome Back ${exisitingUser.firstName}`,
       user: exisitingUser,
-      accessToken,
-      refreshToken,
     });
+
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -212,6 +227,84 @@ export const login = async (req, res) => {
     });
   }
 };
+
+
+
+// export const login = async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     if (!email || !password) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "All fields are required",
+//       });
+//     }
+//     const exisitingUser = await User.findOne({ email });
+//     if (!exisitingUser) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "User not Exists",
+//       });
+//     }
+//     const isPasswordValid = await bcrypt.compare(
+//       password,
+//       exisitingUser.password
+//     );
+//     if (!isPasswordValid) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid Password",
+//       });
+//     }
+//     if (exisitingUser.isVerified === false) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Verify your account then login",
+//       });
+//     }
+
+//     // generate token
+
+//     const accessToken = jwt.sign(
+//       { id: exisitingUser._id },
+//       process.env.SECRET_KEY,
+//       { expiresIn: "10d" }
+//     );
+//     const refreshToken = jwt.sign(
+//       { id: exisitingUser._id },
+//       process.env.SECRET_KEY,
+//       { expiresIn: "30d" }
+//     );
+
+//     exisitingUser.isLoggedIn = true;
+//     await exisitingUser.save();
+
+//     // check for existing session or delete
+//     const exisitingSession = await Session.findOne({
+//       userId: exisitingUser._id,
+//     });
+//     if (exisitingSession) {
+//       await Session.deleteOne({ userId: exisitingUser._id });
+//     }
+
+//     // create new session
+//     await Session.create({ userId: exisitingUser._id });
+//     return res.status(200).json({
+//       success: true,
+//       message: `Welcome Back ${exisitingUser.firstName}`,
+//       user: exisitingUser,
+//       accessToken,
+//       refreshToken,
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
+
+                          
 
 export const logout = async (req, res) => {
   try {

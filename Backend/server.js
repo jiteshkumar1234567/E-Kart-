@@ -7,6 +7,8 @@ import productRoute from "./routes/productRoute.js"
 import cartRoute from "./routes/cartRoute.js"
 import adminRoutes from "./routes/adminRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js";
+import cookieParser from "cookie-parser";
+app.use(cookieParser());
 
 
 const app = express()
@@ -17,6 +19,7 @@ app.use(express.json())
 
 app.use(cors({
   origin: "http://localhost:5173",
+  origin: "https://e-kart-2-10-2.onrender.com",
   credentials: true
 }))
 
