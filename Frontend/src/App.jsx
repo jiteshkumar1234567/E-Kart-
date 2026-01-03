@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
- import { BASE_URL } from "../lib/api";
+ import { BASE_URL } from "./lib/api";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
