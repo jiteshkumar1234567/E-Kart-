@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
-import SalesGraph from "@/components/ui/SalesGraph";
+import SalesGraph from "@/components/ui/salesGraph";
 import { BASE_URL } from "@/lib/api";
 
 const Dashboard = () => {
