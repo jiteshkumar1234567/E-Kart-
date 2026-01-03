@@ -4,7 +4,8 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { X } from "lucide-react";
-import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+import { BASE_URL } from "../../lib/api";
+
 
 
 
