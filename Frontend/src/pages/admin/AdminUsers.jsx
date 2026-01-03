@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { UserMinus } from "lucide-react"; // ✅ import icon
-import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+import { BASE_URL } from "../../lib/api";
+
 
 
 const AdminUsers = () => {

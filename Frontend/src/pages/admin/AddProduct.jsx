@@ -7,7 +7,8 @@ import { CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { BASE_URL } from "../lib/api"; // ya "../lib/api.js"
+import { BASE_URL } from "../../lib/api";
+
 
 
 const AddProduct = () => {
