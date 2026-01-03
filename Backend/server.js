@@ -20,6 +20,12 @@ app.use(cors({
   credentials: true
 }))
 
+
+// ✅ ROOT ROUTE (ADD THIS)
+app.get("/", (req, res) => {
+  res.send("E-Kart Backend API is running 🚀");
+});
+
 app.use("/api/v1/user", userRoute)
 app.use("/api/v1/product", productRoute)
 app.use("/api/v1/cart", cartRoute)
