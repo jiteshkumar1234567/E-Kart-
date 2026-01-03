@@ -27,6 +27,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/user", userRoute)
+
+// app.use("/api/v1/user/register", userRoute)
 app.use("/api/v1/product", productRoute)
 app.use("/api/v1/cart", cartRoute)
 app.use("/api/v1/admin", adminRoutes)

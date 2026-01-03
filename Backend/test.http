@@ -74,3 +74,58 @@
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDViMDFlY2MyYzA2NzUyNWRiMjIyZSIsImlhdCI6MTc2NjI2MTg2NywiZXhwIjoxNzY3MTI1ODY3fQ.0OZE52yyaigLS2q4Gda80ukXMmAanfJB-ancQ5eID1Y
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             // END OF FILE     ONLINE  BACKEND  SERVER TEST HTTP
+
+             ### ROOT CHECK
+GET https://e-kart-2vqj.onrender.com/
+
+###
+
+### GET ALL PRODUCTS
+# GET https://e-kart-2vqj.onrender.com/api/v1/product
+
+###
+
+### REGISTER USER
+### REGISTER USER
+POST https://e-kart-2vqj.onrender.com/api/v1/user/register
+Content-Type: application/json
+
+{
+   "firstName": "Test User",
+  "lastName": "Kumar",
+  "email": "testuser@gmail.com",
+  "password": "123456"
+}
+
+
+###
+
+### LOGIN USER
+# POST https://e-kart-2vqj.onrender.com/api/v1/user/login
+# Content-Type: application/json
+
+# {
+#   "email": "testuser1@gmail.com",
+#   "password": "123456"
+# }
+
+###
+
+### GET CART (AUTH REQUIRED)
+# GET https://e-kart-2vqj.onrender.com/api/v1/cart
